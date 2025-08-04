@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e6f0ff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .calculator {
+      background-color: #3399ff;
+      border-radius: 20px;
+      padding: 20px;
+      width: 260px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    .display {
+      background-color: #e6f7ff;
+      border-radius: 10px;
+      padding: 15px;
+      font-size: 30px;
+      text-align: right;
+      margin-bottom: 20px;
+      height: 50px;
+      overflow: hidden;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    button {
+      padding: 20px;
+      font-size: 20px;
+      background-color: #007acc;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    button:hover {
+      background-color: #005fa3;
+    }
+  </style>
+</head>
+<body>
+
+<div class="calculator">
+  <div class="display" id="display">0</div>
+  <div class="buttons">
+    <button onclick="press('7')">7</button>
+    <button onclick="press('8')">8</button>
+    <button onclick="press('9')">9</button>
+    <button onclick="press('+')">+</button>
+
+    <button onclick="press('4')">4</button>
+    <button onclick="press('5')">5</button>
+    <button onclick="press('6')">6</button>
+    <button onclick="press('-')">-</button>
+
+    <button onclick="press('1')">1</button>
+    <button onclick="press('2')">2</button>
+    <button onclick="press('3')">3</button>
+    <button onclick="calculate()">=</button>
+  </div>
+</div>
+
+<script>
+  let display = document.getElementById('display');
+  let currentInput = '';
+
+  function press(val) {
+    if (display.innerText === '0' && val !== '+' && val !== '-') {
+      currentInput = val;
+    } else {
+      currentInput += val;
+    }
+    display.innerText = currentInput;
+  }
+
+  function calculate() {
+    try {
+      currentInput = eval(currentInput).toString();
+      display.innerText = currentInput;
+    } catch {
+      display.innerText = 'Error';
+    }
+  }
+</script>
+
+</body>
+</html>
